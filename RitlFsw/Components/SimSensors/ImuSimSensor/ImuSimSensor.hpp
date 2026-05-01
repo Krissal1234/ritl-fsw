@@ -7,7 +7,7 @@
 #ifndef RitlFsw_ImuSimSensor_HPP
 #define RitlFsw_ImuSimSensor_HPP
 
-#include "RitlFsw/Components/ImuSimSensor/ImuSimSensorComponentAc.hpp"
+#include "RitlFsw/Components/SimSensors/ImuSimSensor/ImuSimSensorComponentAc.hpp"
 
 namespace RitlFsw {
 

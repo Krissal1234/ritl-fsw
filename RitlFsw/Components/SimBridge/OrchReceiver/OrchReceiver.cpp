@@ -4,7 +4,7 @@
 // \brief  cpp file for OrchReceiver component implementation class
 // ======================================================================
 
-#include "RitlFsw/Components/OrchReceiver/OrchReceiver.hpp"
+#include "RitlFsw/Components/SimBridge/OrchReceiver/OrchReceiver.hpp"
 #include "Fw/Logger/Logger.hpp"
 namespace RitlFsw {
 

@@ -1,5 +1,5 @@
 module RitlFsw {
-    passive component ImuSimSensor{
+    passive component ImuSimSensor {
 
         sync input port imuSensorDataIn: RitlImuData
 

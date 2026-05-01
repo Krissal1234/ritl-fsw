@@ -46,6 +46,11 @@ module RitlFsw {
     stack size Default.STACK_SIZE \
     priority 40
 
+  instance flightMain: RitlFsw.FlightMain base id 0x10021000 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 35
+
   # ----------------------------------------------------------------------
   # Queued component instances
   # ----------------------------------------------------------------------
@@ -68,11 +73,6 @@ module RitlFsw {
   # Sensor pipeline
   instance orchReceiver: RitlFsw.OrchReceiver base id 0x10020000
 
-  instance flightMain: RitlFsw.FlightMain base id 0x10021000 \
-    queue size Default.QUEUE_SIZE \
-    stack size Default.STACK_SIZE \
-    priority 35
-
   instance sensorServer: Drv.TcpServer base id 0x10022000
 
   instance sensorBufferManager: Svc.BufferManager base id 0x10023000
@@ -82,5 +82,9 @@ module RitlFsw {
   instance orchSenderBufferManager: Svc.BufferManager base id 0x10025000
 
   instance orchSenderClient: Drv.TcpClient base id 0x10026000
+
+  instance imuSimSensor: RitlFsw.ImuSimSensor base id 0x10027000
+
+  instance baroSimSensor : RitlFsw.BaroSimSensor base id 0x10028000
 
 }

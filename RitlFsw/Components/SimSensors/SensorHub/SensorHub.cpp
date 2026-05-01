@@ -1,10 +1,10 @@
 // ======================================================================
-// \title  ImuSimSensor.cpp
+// \title  SensorHub.cpp
 // \author krissal1234
-// \brief  cpp file for ImuSimSensor component implementation class
+// \brief  cpp file for SensorHub component implementation class
 // ======================================================================
 
-#include "RitlFsw/Components/ImuSimSensor/ImuSimSensor.hpp"
+#include "RitlFsw/Components/SimSensors/SensorHub/SensorHub.hpp"
 
 namespace RitlFsw {
 
@@ -12,20 +12,20 @@ namespace RitlFsw {
 // Component construction and destruction
 // ----------------------------------------------------------------------
 
-ImuSimSensor ::ImuSimSensor(const char* const compName) : ImuSimSensorComponentBase(compName) {}
+SensorHub ::SensorHub(const char* const compName) : SensorHubComponentBase(compName) {}
 
-ImuSimSensor ::~ImuSimSensor() {}
+SensorHub ::~SensorHub() {}
 
 // ----------------------------------------------------------------------
 // Handler implementations for typed input ports
 // ----------------------------------------------------------------------
 
-RitlFsw::ImuSimData ImuSimSensor ::getImuData_handler(FwIndexType portNum) {
-    return this->m_imuData;
+RitlFsw::SensorData SensorHub ::getSensorData_handler(FwIndexType portNum) {
+  return this->m_sensorData;
 }
 
-void ImuSimSensor ::imuSensorDataIn_handler(FwIndexType portNum, const RitlFsw::ImuSimData& data) {
-    this->m_imuData = data;
+void SensorHub ::sensorDataIn_handler(FwIndexType portNum, const RitlFsw::SensorData& data) {
+  this->m_sensorData = data;
 }
 
 }  // namespace RitlFsw

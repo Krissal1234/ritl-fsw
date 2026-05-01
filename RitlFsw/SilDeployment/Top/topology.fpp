@@ -39,6 +39,8 @@ module RitlFsw {
     instance orchSender
     instance orchSenderBufferManager
     instance orchSenderClient
+    instance baroSimSensor
+    instance imuSimSensor
 
   # ----------------------------------------------------------------------
   # Pattern graph specifiers

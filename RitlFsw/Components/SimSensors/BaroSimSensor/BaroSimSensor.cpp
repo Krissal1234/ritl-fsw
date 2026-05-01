@@ -4,7 +4,7 @@
 // \brief  cpp file for BaroSimSensor component implementation class
 // ======================================================================
 
-#include "RitlFsw/Components/BaroSimSensor/BaroSimSensor.hpp"
+#include "RitlFsw/Components/SimSensors/BaroSimSensor/BaroSimSensor.hpp"
 
 namespace RitlFsw {
 

@@ -7,7 +7,7 @@
 #ifndef RitlFsw_BaroSimSensor_HPP
 #define RitlFsw_BaroSimSensor_HPP
 
-#include "RitlFsw/Components/BaroSimSensor/BaroSimSensorComponentAc.hpp"
+#include "RitlFsw/Components/SimSensors/BaroSimSensor/BaroSimSensorComponentAc.hpp"
 
 namespace RitlFsw {
 

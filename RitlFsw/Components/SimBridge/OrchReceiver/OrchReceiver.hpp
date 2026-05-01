@@ -7,7 +7,7 @@
 #ifndef RitlFsw_OrchReceiver_HPP
 #define RitlFsw_OrchReceiver_HPP
 
-#include "RitlFsw/Components/OrchReceiver/OrchReceiverComponentAc.hpp"
+#include "RitlFsw/Components/SimBridge/OrchReceiver/OrchReceiverComponentAc.hpp"
 
 namespace RitlFsw {
 

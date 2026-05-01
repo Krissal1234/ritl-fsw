@@ -1,7 +1,7 @@
 #ifndef RITLFSW_ORCHSENDER_HPP
 #define RITLFSW_ORCHSENDER_HPP
 
-#include "RitlFsw/Components/OrchSender/OrchSenderComponentAc.hpp"
+#include "RitlFsw/Components/SimBridge/OrchSender/OrchSenderComponentAc.hpp"
 
 namespace RitlFsw {
 
