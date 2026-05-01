@@ -19,7 +19,7 @@ void OrchSender::sendActuation_handler(
         case RitlFsw::CommandId::MAIN_FIRE:
             this->log_ACTIVITY_HI_MainSent();
             break;
-        case RitlFsw::CommandId::CONTROL:
+        case RitlFsw::CommandId::AIRBRAKE_SET:
             // Not implemented yet
             return;
         default:

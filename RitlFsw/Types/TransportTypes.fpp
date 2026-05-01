@@ -13,10 +13,24 @@ module RitlFsw {
         gyro:  Vec3
     }
 
+    struct ImuSimData {
+        accel: Vec3
+        gyro: Vec3
+    }
+
+
+    port RitlImuData(data: ImuSimData)
+
+    @ synchronous get port that returns imu data - used by ImuSimSensor
+    port GetImuData() -> ImuSimData
+
+    @ synchronous get port that returns baro data - used by BaroSimSensor
+    port GetBaroData() -> F64
+
     enum CommandId : U8 {
         DROGUE_FIRE = 0x01
         MAIN_FIRE = 0x02
-        # AIRBRAKE_SET = 0x03
+        AIRBRAKE_SET = 0x03
     }
 
     struct ActuationCommand {
