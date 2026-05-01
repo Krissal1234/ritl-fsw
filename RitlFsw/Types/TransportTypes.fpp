@@ -16,12 +16,12 @@ module RitlFsw {
     enum CommandId : U8 {
         DROGUE_FIRE = 0x01
         MAIN_FIRE = 0x02
-        AIRBRAKE_SET = 0x03
+        # AIRBRAKE_SET = 0x03
     }
 
     struct ActuationCommand {
         cmdId: CommandId
-        deployment_level: F32
+        # deployment_level: F32
     }
 
     port RitlSensorData(data: SensorData)
