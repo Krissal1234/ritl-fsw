@@ -19,12 +19,11 @@ module RitlFsw {
     }
 
 
-    @ Input port from Simulator for incoming IMU data (coming from TcpServer)
+    @ Input port from Simulator for incoming IMU data
     port RitlImuData(data: ImuSimData)
 
-    @ Input port from Simulator for incoming Barometer data (coming from TcpServer)
+    @ Input port from Simulator for incoming Barometer data
     port RitlBaroData(data: F32)
-
 
     @ synchronous get port that returns full sensor packet - used for hook on SensorHub
     port GetSensorData() -> SensorData

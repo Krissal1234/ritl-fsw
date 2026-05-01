@@ -26,6 +26,13 @@ RitlFsw::SensorData SensorHub ::getSensorData_handler(FwIndexType portNum) {
 
 void SensorHub ::sensorDataIn_handler(FwIndexType portNum, const RitlFsw::SensorData& data) {
   this->m_sensorData = data;
+
+  RitlFsw::ImuSimData imu;
+  imu.set_accel(data.get_accel());
+  imu.set_gyro(data.get_gyro());
+  this->imuDataOut_out(0,imu);
+
+  this->baroDataOut_out(0,data.get_baro());
 }
 
 }  // namespace RitlFsw

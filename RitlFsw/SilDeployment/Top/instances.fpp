@@ -85,6 +85,9 @@ module RitlFsw {
 
   instance imuSimSensor: RitlFsw.ImuSimSensor base id 0x10027000
 
-  instance baroSimSensor : RitlFsw.BaroSimSensor base id 0x10028000
+  instance baroSimSensor: RitlFsw.BaroSimSensor base id 0x10028000
+
+  instance sensorHub: RitlFsw.SensorHub base id 0x10029000
+
 
 }

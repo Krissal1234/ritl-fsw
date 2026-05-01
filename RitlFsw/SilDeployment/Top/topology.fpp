@@ -41,6 +41,7 @@ module RitlFsw {
     instance orchSenderClient
     instance baroSimSensor
     instance imuSimSensor
+    instance sensorHub
 
   # ----------------------------------------------------------------------
   # Pattern graph specifiers
@@ -153,7 +154,7 @@ module RitlFsw {
       # which deallocates it back to sensorBufferManager
       orchReceiver.deallocate -> sensorServer.recvReturnIn
 
-      orchReceiver.sensorDataOut -> flightMain.sensorDataIn
+      orchReceiver.sensorDataOut -> sensorHub.sensorDataIn
     }
 
     connections OrchSenderPipeline {
@@ -174,7 +175,8 @@ module RitlFsw {
     }
 
     connections SilDeployment {
-
+      sensorHub.baroDataOut -> baroSimSensor.baroSensorDataIn
+      sensorHub.imuDataOut -> imuSimSensor.imuSensorDataIn
     }
 
   }

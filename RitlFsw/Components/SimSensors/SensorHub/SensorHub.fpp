@@ -8,7 +8,9 @@ module RitlFsw {
         @ Future proof hook in case testing requires bypassing SimSensors
         guarded input port getSensorData: GetSensorData
 
-
+       @ Output ports to individual sensor components
+        output port imuDataOut  : RitlImuData
+        output port baroDataOut : RitlBaroData
 
         @ Port for requesting the current time
         time get port timeCaller
