@@ -38,7 +38,7 @@ void FlightMain::sensorDataIn_handler(FwIndexType portNum, const RitlFsw::Sensor
 
         if (m_baro_count >= APOGEE_CONFIRM_COUNT) {
 
-            RitlFsw::ActuationCommand cmd(RitlFsw::CommandId::DROGUE_FIRE);
+            RitlFsw::ActuationCommand cmd(RitlFsw::CommandId::DROGUE_FIRE, 0.0);
             Fw::Logger::log("DROGUE FIRED --------------\n");
 
             this->actuationOut_out(0, cmd);
@@ -49,7 +49,7 @@ void FlightMain::sensorDataIn_handler(FwIndexType portNum, const RitlFsw::Sensor
     if (m_drogue_fired && !m_main_fired) {
 
         if (baro >= m_min_baro + MAIN_DEPLOY_DELTA_HPA) {
-            RitlFsw::ActuationCommand cmd(RitlFsw::CommandId::MAIN_FIRE);
+            RitlFsw::ActuationCommand cmd(RitlFsw::CommandId::MAIN_FIRE,0.0);
             Fw::Logger::log("MAIN FIRED --------------\n");
 
             this->actuationOut_out(0, cmd);

@@ -1,10 +1,10 @@
 // ======================================================================
-// \title  ImuSimSensor.cpp
+// \title  BaroSimSensor.cpp
 // \author krissal1234
-// \brief  cpp file for ImuSimSensor component implementation class
+// \brief  cpp file for BaroSimSensor component implementation class
 // ======================================================================
 
-#include "RitlFsw/Components/ImuSimSensor/ImuSimSensor.hpp"
+#include "RitlFsw/Components/BaroSimSensor/BaroSimSensor.hpp"
 
 namespace RitlFsw {
 
@@ -12,20 +12,20 @@ namespace RitlFsw {
 // Component construction and destruction
 // ----------------------------------------------------------------------
 
-ImuSimSensor ::ImuSimSensor(const char* const compName) : ImuSimSensorComponentBase(compName) {}
+BaroSimSensor ::BaroSimSensor(const char* const compName) : BaroSimSensorComponentBase(compName) {}
 
-ImuSimSensor ::~ImuSimSensor() {}
+BaroSimSensor ::~BaroSimSensor() {}
 
 // ----------------------------------------------------------------------
 // Handler implementations for typed input ports
 // ----------------------------------------------------------------------
 
-RitlFsw::ImuSimData ImuSimSensor ::getImuData_handler(FwIndexType portNum) {
-    return this->m_imuData;
+void BaroSimSensor ::baroSensorDataIn_handler(FwIndexType portNum, F32 data) {
+    this->m_baro = data;
 }
 
-void ImuSimSensor ::imuSensorDataIn_handler(FwIndexType portNum, const RitlFsw::ImuSimData& data) {
-    this->m_imuData = data;
+F64 BaroSimSensor ::getBaroData_handler(FwIndexType portNum) {
+    return this->m_baro;
 }
 
 }  // namespace RitlFsw

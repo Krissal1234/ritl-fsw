@@ -25,6 +25,7 @@ class ImuSimSensor final : public ImuSimSensorComponentBase {
     ~ImuSimSensor();
 
   private:
+    RitlFsw::ImuSimData m_imuData {};
     // ----------------------------------------------------------------------
     // Handler implementations for typed input ports
     // ----------------------------------------------------------------------

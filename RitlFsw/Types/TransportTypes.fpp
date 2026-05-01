@@ -19,7 +19,11 @@ module RitlFsw {
     }
 
 
+    @ Input port from Simulator for incoming IMU data (coming from TcpServer)
     port RitlImuData(data: ImuSimData)
+
+    @ Input port from Simulator for incoming Barometer data (coming from TcpServer)
+    port RitlBaroData(data: F32)
 
     @ synchronous get port that returns imu data - used by ImuSimSensor
     port GetImuData() -> ImuSimData
@@ -35,7 +39,7 @@ module RitlFsw {
 
     struct ActuationCommand {
         cmdId: CommandId
-        # deployment_level: F32
+        deployment_level: F32
     }
 
     port RitlSensorData(data: SensorData)
