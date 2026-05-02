@@ -89,5 +89,8 @@ module RitlFsw {
 
   instance sensorHub: RitlFsw.SensorHub base id 0x10029000
 
+  instance recoveryController: RitlFsw.RecoveryController base id 0x10030000
+
+  instance airbrakeController: RitlFsw.AirbrakeController base id 0x10031000
 
 }

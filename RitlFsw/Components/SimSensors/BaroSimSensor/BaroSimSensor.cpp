@@ -20,7 +20,7 @@ BaroSimSensor ::~BaroSimSensor() {}
 // Handler implementations for typed input ports
 // ----------------------------------------------------------------------
 
-void BaroSimSensor ::baroSensorDataIn_handler(FwIndexType portNum, F32 data) {
+void BaroSimSensor ::baroSensorDataIn_handler(FwIndexType portNum, F64 data) {
     this->m_baro = data;
 }
 

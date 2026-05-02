@@ -5,6 +5,7 @@
 // ======================================================================
 
 #include "RitlFsw/Components/SimSensors/ImuSimSensor/ImuSimSensor.hpp"
+#include "Fw/Logger/Logger.hpp"
 
 namespace RitlFsw {
 
@@ -22,6 +23,7 @@ ImuSimSensor ::~ImuSimSensor() {}
 
 RitlFsw::ImuSimData ImuSimSensor ::getImuData_handler(FwIndexType portNum) {
     return this->m_imuData;
+    Fw::Logger::log("Imu was requested sensor data ");
 }
 
 void ImuSimSensor ::imuSensorDataIn_handler(FwIndexType portNum, const RitlFsw::ImuSimData& data) {

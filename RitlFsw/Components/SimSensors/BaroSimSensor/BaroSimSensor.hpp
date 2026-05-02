@@ -25,14 +25,14 @@ class BaroSimSensor final : public BaroSimSensorComponentBase {
     ~BaroSimSensor();
 
   private:
-    F32 m_baro {1e9};
+    F64 m_baro {1e9};
     // ----------------------------------------------------------------------
     // Handler implementations for typed input ports
     // ----------------------------------------------------------------------
 
     //! Handler implementation for baroSensorDataIn
     void baroSensorDataIn_handler(FwIndexType portNum,  //!< The port number
-                                  F32 data) override;
+                                  F64 data) override;
 
     //! Handler implementation for getBaroData
     F64 getBaroData_handler(FwIndexType portNum  //!< The port number

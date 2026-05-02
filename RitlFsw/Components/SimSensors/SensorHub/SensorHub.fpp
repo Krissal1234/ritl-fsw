@@ -3,14 +3,16 @@ module RitlFsw {
     passive component SensorHub {
 
         @ Receive deserialized sensor data from OrchReceiver
-        sync input port sensorDataIn : RitlSensorData
+        sync input port sensorDataIn : SensorDataPort
 
         @ Future proof hook in case testing requires bypassing SimSensors
         guarded input port getSensorData: GetSensorData
 
+        guarded input port getSimReady : GetSimReady
+
        @ Output ports to individual sensor components
-        output port imuDataOut  : RitlImuData
-        output port baroDataOut : RitlBaroData
+        output port imuDataOut  : ImuDataPort
+        output port baroDataOut : BaroDataPort
 
         @ Port for requesting the current time
         time get port timeCaller

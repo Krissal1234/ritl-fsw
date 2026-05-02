@@ -3,7 +3,7 @@ module RitlFsw {
     passive component BaroSimSensor {
 
 
-        sync input port baroSensorDataIn : RitlBaroData
+        sync input port baroSensorDataIn : BaroDataPort
 
         guarded input port getBaroData : GetBaroData
 

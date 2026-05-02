@@ -24,7 +24,12 @@ RitlFsw::SensorData SensorHub ::getSensorData_handler(FwIndexType portNum) {
   return this->m_sensorData;
 }
 
+bool SensorHub ::getSimReady_handler(FwIndexType portNum) {
+  return this->m_has_received_data;
+}
+
 void SensorHub ::sensorDataIn_handler(FwIndexType portNum, const RitlFsw::SensorData& data) {
+  this->m_has_received_data = true;
   this->m_sensorData = data;
 
   RitlFsw::ImuSimData imu;

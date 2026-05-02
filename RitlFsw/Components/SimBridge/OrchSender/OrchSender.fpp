@@ -2,7 +2,7 @@ module RitlFsw {
     @ Tcp Client to send actuation commands to Orchestrator
     passive component OrchSender {
 
-        sync input port sendActuation: RitlActuationCommand
+        sync input port sendActuation: ActuationCommandPort
 
         @ Sink for orchSenderClient recv events (disconnect, etc.) — buffer is discarded
         sync input port recvDataIn: Drv.ByteStreamData

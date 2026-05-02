@@ -25,6 +25,7 @@ class SensorHub final : public SensorHubComponentBase {
     ~SensorHub();
 
     private:
+      bool m_has_received_data = false;
       RitlFsw::SensorData m_sensorData {
           0.0,        // t — time, 0 on startup
           {0.0, 0.0, 0.0},  // accel
@@ -46,6 +47,9 @@ class SensorHub final : public SensorHubComponentBase {
     //! Receive deserialized sensor data from OrchReceiver
     void sensorDataIn_handler(FwIndexType portNum,  //!< The port number
                               const RitlFsw::SensorData& data) override;
+
+    bool getSimReady_handler(FwIndexType portNum) override;
+
 };
 
 }  // namespace RitlFsw

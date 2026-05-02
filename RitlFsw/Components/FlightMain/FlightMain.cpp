@@ -13,49 +13,37 @@ namespace RitlFsw {
 // Component construction and destruction
 // ----------------------------------------------------------------------
 
-FlightMain::FlightMain(const char* const compName)
-    : FlightMainComponentBase(compName),
-      m_min_baro(1e9),
-      m_baro_count(0),
-      m_drogue_fired(false),
-      m_main_fired(false) {}
+FlightMain ::FlightMain(const char* const compName) : FlightMainComponentBase(compName) {}
 
-FlightMain::~FlightMain() {}
+FlightMain ::~FlightMain() {}
 
+// ----------------------------------------------------------------------
+// Handler implementations for typed input ports
+// ----------------------------------------------------------------------
 
-void FlightMain::sensorDataIn_handler(FwIndexType portNum, const RitlFsw::SensorData& data) {
-    F64 baro = data.get_baro();
-    Fw::Logger::log("baro %f\n", baro);
+void FlightMain ::run_handler(FwIndexType portNum, U32 context) {
+    RitlFsw::ImuSimData imu = this->getImu_out(0);
+    F64 baro = this->getBaro_out(0);
 
-    if (!m_drogue_fired) {
+    if (m_state == FlightState::INITIALISING) {
+        bool ready = this->getSimReady_out(0);
+        if (!ready) return;  // no data yet
 
-        if (baro < m_min_baro) {
-            m_min_baro   = baro;
-            m_baro_count = 0;
-        } else if (baro > m_min_baro + APOGEE_BARO_DELTA) {
-            ++m_baro_count;
-        }
-
-        if (m_baro_count >= APOGEE_CONFIRM_COUNT) {
-
-            RitlFsw::ActuationCommand cmd(RitlFsw::CommandId::DROGUE_FIRE, 0.0);
-            Fw::Logger::log("DROGUE FIRED --------------\n");
-
-            this->actuationOut_out(0, cmd);
-            m_drogue_fired = true;
-        }
+        // first real data arrived
+        m_state = FlightState::FLIGHT;
+        Fw::Logger::log("FlightMain: sim connected\n");
     }
+    RitlFsw::SensorData sd;
 
-    if (m_drogue_fired && !m_main_fired) {
+    sd.set_accel(imu.get_accel());
+    sd.set_gyro(imu.get_gyro());
+    sd.set_baro(baro);
+    sd.set_t(0.0); // we should look into this when we start measuring latencies
 
-        if (baro >= m_min_baro + MAIN_DEPLOY_DELTA_HPA) {
-            RitlFsw::ActuationCommand cmd(RitlFsw::CommandId::MAIN_FIRE,0.0);
-            Fw::Logger::log("MAIN FIRED --------------\n");
+    this->baroToRecovery_out(0, baro);
+    this->sensorDataToControl_out(0,sd);
 
-            this->actuationOut_out(0, cmd);
-            m_main_fired = true;
-        }
-    }
+
 }
 
 }  // namespace RitlFsw

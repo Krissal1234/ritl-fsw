@@ -24,7 +24,7 @@ module RitlFsw {
         # ------------------------------------------------------------------
 
         @ Forward received sensor data downstream
-        output port sensorDataOut : RitlSensorData
+        output port sensorDataOut : SensorDataPort
 
         # ------------------------------------------------------------------
         # Standard AC ports

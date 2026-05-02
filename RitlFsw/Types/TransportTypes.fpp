@@ -18,22 +18,6 @@ module RitlFsw {
         gyro: Vec3
     }
 
-
-    @ Input port from Simulator for incoming IMU data
-    port RitlImuData(data: ImuSimData)
-
-    @ Input port from Simulator for incoming Barometer data
-    port RitlBaroData(data: F32)
-
-    @ synchronous get port that returns full sensor packet - used for hook on SensorHub
-    port GetSensorData() -> SensorData
-
-    @ synchronous get port that returns imu data - used by ImuSimSensor
-    port GetImuData() -> ImuSimData
-
-    @ synchronous get port that returns baro data - used by BaroSimSensor
-    port GetBaroData() -> F64
-
     enum CommandId : U8 {
         DROGUE_FIRE = 0x01
         MAIN_FIRE = 0x02
@@ -45,7 +29,28 @@ module RitlFsw {
         deployment_level: F32
     }
 
-    port RitlSensorData(data: SensorData)
 
-    port RitlActuationCommand(cmd: ActuationCommand)
+    port ImuDataPort(data: ImuSimData)
+
+    port BaroDataPort(data: F64)
+
+    port SensorDataPort(data: SensorData)
+
+    port ActuationCommandPort(cmd: ActuationCommand)
+
+
+    @ synchronous get port that signals if sensorhub began receiving data
+    port GetSimReady() -> bool
+
+    @ synchronous get port that returns full sensor packet - used for hook on SensorHub
+    port GetSensorData() -> SensorData
+
+    @ synchronous get port that returns imu data - used by ImuSimSensor
+    port GetImuData() -> ImuSimData
+
+    @ synchronous get port that returns baro data - used by BaroSimSensor
+    port GetBaroData() -> F64
+
+
+
 }

@@ -42,6 +42,8 @@ module RitlFsw {
     instance baroSimSensor
     instance imuSimSensor
     instance sensorHub
+    instance recoveryController
+    instance airbrakeController
 
   # ----------------------------------------------------------------------
   # Pattern graph specifiers
@@ -117,8 +119,10 @@ module RitlFsw {
       rateGroup1.RateGroupMemberOut[2] -> systemResources.run
       rateGroup1.RateGroupMemberOut[3] -> ComCcsds.comQueue.run
       rateGroup1.RateGroupMemberOut[4] -> ComCcsds.aggregator.timeout
+      rateGroup1.RateGroupMemberOut[5] -> flightMain.run
 
       # Rate group 2
+
       rateGroupDriver.CycleOut[Ports_RateGroups.rateGroup2] -> rateGroup2.CycleIn
       rateGroup2.RateGroupMemberOut[0] -> cmdSeq.schedIn
 
@@ -139,7 +143,7 @@ module RitlFsw {
       CdhCore.cmdDisp.seqCmdStatus -> cmdSeq.cmdResponseIn
     }
 
-    connections SensorPipeline {
+    connections SensorDataInPipeline {
       # Buffer management for sensorServer receive buffers
       sensorServer.allocate   -> sensorBufferManager.bufferGetCallee
       sensorServer.deallocate -> sensorBufferManager.bufferSendIn
@@ -157,7 +161,7 @@ module RitlFsw {
       orchReceiver.sensorDataOut -> sensorHub.sensorDataIn
     }
 
-    connections OrchSenderPipeline {
+    connections ActuationDataOutPipeline {
       # Buffer management for orchSender send buffers
       orchSender.allocate   -> orchSenderBufferManager.bufferGetCallee
       orchSender.deallocate -> orchSenderBufferManager.bufferSendIn
@@ -171,12 +175,26 @@ module RitlFsw {
 
       orchSenderClient.$recv -> orchSender.recvDataIn
 
-      flightMain.actuationOut -> orchSender.sendActuation
+      recoveryController.actuationCommandOut -> orchSender.sendActuation
+      airbrakeController.actuationCommandOut -> orchSender.sendActuation
+
     }
 
     connections SilDeployment {
       sensorHub.baroDataOut -> baroSimSensor.baroSensorDataIn
       sensorHub.imuDataOut -> imuSimSensor.imuSensorDataIn
+
+
+      flightMain.getBaro -> baroSimSensor.getBaroData
+      flightMain.getImu -> imuSimSensor.getImuData
+      flightMain.baroToRecovery -> recoveryController.baroDataIn
+      flightMain.sensorDataToControl -> airbrakeController.sensorDataIn
+      flightMain.getSimReady -> sensorHub.getSimReady
+
+
+
+
+
     }
 
   }
