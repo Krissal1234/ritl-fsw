@@ -26,7 +26,7 @@ RecoveryController ::~RecoveryController() {}
 // ----------------------------------------------------------------------
 
 void RecoveryController ::baroDataIn_handler(FwIndexType portNum, F64 data) {
-    F32 baro = data;
+    F32 baro = data / 100;
     if (!m_drogue_fired) {
 
         if (baro < m_min_baro) {

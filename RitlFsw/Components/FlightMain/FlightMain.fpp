@@ -16,6 +16,8 @@ module RitlFsw {
 
         output port getSimReady : GetSimReady
 
+        output port getSensorData : GetSensorData
+
 
 
 

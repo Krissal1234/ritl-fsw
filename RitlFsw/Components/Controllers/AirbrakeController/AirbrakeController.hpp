@@ -33,10 +33,11 @@ class AirbrakeController final : public AirbrakeControllerComponentBase {
     bool m_burned_out = false;
     U32  m_descent_count = 0;
     bool m_has_data = false;
+    F64 m_prev_sim_time_for_dt = -1.0;
 
     static constexpr F64 TARGET_APOGEE = 3000.0;
-    static constexpr F64 Kp = 0.0001;
-    static constexpr F64 Ki = 0.00001;
+    static constexpr F64 Kp = 0.001;
+    static constexpr F64 Ki = 0.0001;
     static constexpr F64 BOOST_ACCEL_THRESHOLD = 15.0;
     static constexpr F64 g = 9.81;
     static constexpr U32 DESCENT_COUNT_THRESHOLD = 10;
@@ -45,6 +46,8 @@ class AirbrakeController final : public AirbrakeControllerComponentBase {
 
     bool m_burnout_retract_sent = false;
     bool m_apogee_retract_sent  = false;
+    F64 m_prev_sim_time = -1.0;
+
 
     // ----------------------------------------------------------------------
     // Handler implementations for typed input ports
