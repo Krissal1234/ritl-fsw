@@ -18,6 +18,7 @@ module RitlFsw {
 
         output port getSensorData : GetSensorData
 
+        output port actuationCommandOut : ActuationCommandPort
 
 
 

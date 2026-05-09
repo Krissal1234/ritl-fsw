@@ -42,7 +42,6 @@ module RitlFsw {
     instance baroSimSensor
     instance imuSimSensor
     instance sensorHub
-    instance recoveryController
     instance airbrakeController
 
   # ----------------------------------------------------------------------
@@ -175,7 +174,7 @@ module RitlFsw {
 
       orchSenderClient.$recv -> orchSender.recvDataIn
 
-      recoveryController.actuationCommandOut -> orchSender.sendActuation
+      flightMain.actuationCommandOut -> orchSender.sendActuation
       airbrakeController.actuationCommandOut -> orchSender.sendActuation
 
     }
@@ -184,18 +183,12 @@ module RitlFsw {
       sensorHub.baroDataOut -> baroSimSensor.baroSensorDataIn
       sensorHub.imuDataOut -> imuSimSensor.imuSensorDataIn
 
-      # flightMain.getBaro -> baroSimSensor.getBaroData
-      # flightMain.getImu -> imuSimSensor.getImuData
+      flightMain.getBaro -> baroSimSensor.getBaroData
+      flightMain.getImu -> imuSimSensor.getImuData
 
       flightMain.getSensorData -> sensorHub.getSensorData
-      flightMain.baroToRecovery -> recoveryController.baroDataIn
       flightMain.sensorDataToControl -> airbrakeController.sensorDataIn
       flightMain.getSimReady -> sensorHub.getSimReady
-
-
-
-
-
     }
 
   }
