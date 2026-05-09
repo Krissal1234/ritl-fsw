@@ -15,6 +15,13 @@ AirbrakeController::AirbrakeController(const char* const compName)
 
 AirbrakeController::~AirbrakeController() {}
 
+void AirbrakeController::setAirbrake(F32 level) {
+    RitlFsw::ActuationCommand cmd;
+    cmd.set_cmdId(RitlFsw::CommandId::AIRBRAKE_SET);
+    cmd.set_deployment_level(level);
+    this->actuationCommandOut_out(0, cmd);
+}
+
 void AirbrakeController::sensorDataIn_handler(
     FwIndexType portNum,
     const RitlFsw::SensorData& data) {
@@ -37,7 +44,7 @@ void AirbrakeController::sensorDataIn_handler(
     if (m_P0 < 0.0) {
         m_P0 = pressure;
         m_prev_alt = 0.0;
-        this->sendActuation(0.0);
+        this->setAirbrake(0.0);
         return;
     }
 
@@ -49,7 +56,7 @@ void AirbrakeController::sensorDataIn_handler(
         if (az < BOOST_ACCEL_THRESHOLD) {
             m_burned_out = true;
         } else {
-            this->sendActuation(0.0);
+            this->setAirbrake(0.0);
             return;
         }
     }
@@ -67,7 +74,7 @@ void AirbrakeController::sensorDataIn_handler(
         m_integral = 0.0;
         m_vz       = 0.0;
         m_prev_alt = altitude;
-        this->sendActuation(0.0);
+        this->setAirbrake(0.0);
         return;
     }
 
@@ -87,11 +94,7 @@ void AirbrakeController::sensorDataIn_handler(
     Fw::Logger::log("t=%.2f alt=%.1f pred=%.1f err=%.1f dep=%.3f vz=%.2f\n",
         t, altitude, predicted_apogee, error, raw, m_vz);
 
-    this->sendActuation(static_cast<F32>(raw));
-}
-void AirbrakeController::sendActuation(F32 level) {
-    RitlFsw::ActuationCommand cmd(RitlFsw::CommandId::AIRBRAKE_SET, level);
-    this->actuationCommandOut_out(0, cmd);
+    this->setAirbrake(static_cast<F32>(raw));
 }
 
 }  // namespace RitlFsw

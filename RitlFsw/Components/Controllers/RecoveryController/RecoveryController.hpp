@@ -34,6 +34,9 @@ class RecoveryController final : public RecoveryControllerComponentBase {
     static constexpr U32 APOGEE_CONFIRM_COUNT = 5;
     static constexpr F64 MAIN_DEPLOY_DELTA_HPA = 40.0;
 
+
+    void fireDrogue();
+    void fireMain();
     // ----------------------------------------------------------------------
     // Handler implementations for typed input ports
     // ----------------------------------------------------------------------

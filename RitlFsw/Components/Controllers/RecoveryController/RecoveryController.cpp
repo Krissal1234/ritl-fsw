@@ -21,6 +21,20 @@ RecoveryController ::RecoveryController(const char* const compName) : RecoveryCo
 
 RecoveryController ::~RecoveryController() {}
 
+void RecoveryController::fireDrogue() {
+    RitlFsw:ActuationCommand cmd;
+    cmd.set_cmdId(RitlFsw::CommandId::DROGUE_FIRE);
+    cmd.set_deployment_level(0.0f);
+    this->actuationCommandOut_out(0, cmd);
+}
+
+void RecoveryController::fireMain() {
+    RitlFsw:ActuationCommand cmd;
+    cmd.set_cmdId(RitlFsw::CommandId::MAIN_FIRE);
+    cmd.set_deployment_level(0.0f);
+    this->actuationCommandOut_out(0, cmd);
+}
+
 // ----------------------------------------------------------------------
 // Handler implementations for typed input ports
 // ----------------------------------------------------------------------
@@ -37,11 +51,8 @@ void RecoveryController ::baroDataIn_handler(FwIndexType portNum, F64 data) {
         }
 
         if (m_baro_count >= APOGEE_CONFIRM_COUNT) {
-
-            RitlFsw::ActuationCommand cmd(RitlFsw::CommandId::DROGUE_FIRE, 0.0);
+            this->fireDrogue();
             Fw::Logger::log("DROGUE FIRED --------------\n");
-
-            this->actuationCommandOut_out(0, cmd);
             m_drogue_fired = true;
         }
     }
@@ -49,10 +60,8 @@ void RecoveryController ::baroDataIn_handler(FwIndexType portNum, F64 data) {
     if (m_drogue_fired && !m_main_fired) {
 
         if (baro >= m_min_baro + MAIN_DEPLOY_DELTA_HPA) {
-            RitlFsw::ActuationCommand cmd(RitlFsw::CommandId::MAIN_FIRE,0.0);
+            this->fireMain();
             Fw::Logger::log("MAIN FIRED --------------\n");
-
-            this->actuationCommandOut_out(0, cmd);
             m_main_fired = true;
         }
     }

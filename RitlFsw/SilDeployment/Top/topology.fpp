@@ -184,10 +184,9 @@ module RitlFsw {
       sensorHub.baroDataOut -> baroSimSensor.baroSensorDataIn
       sensorHub.imuDataOut -> imuSimSensor.imuSensorDataIn
 
-
-
       # flightMain.getBaro -> baroSimSensor.getBaroData
       # flightMain.getImu -> imuSimSensor.getImuData
+
       flightMain.getSensorData -> sensorHub.getSensorData
       flightMain.baroToRecovery -> recoveryController.baroDataIn
       flightMain.sensorDataToControl -> airbrakeController.sensorDataIn

@@ -25,10 +25,14 @@ class FlightMain final : public FlightMainComponentBase {
     ~FlightMain();
 
   private:
-
     enum class FlightState { INITIALISING, FLIGHT, LANDED };
 
     FlightState m_state = FlightState::INITIALISING;
+
+
+
+
+
 
     // ----------------------------------------------------------------------
     // Handler implementations for typed input ports

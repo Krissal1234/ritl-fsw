@@ -48,6 +48,8 @@ class AirbrakeController final : public AirbrakeControllerComponentBase {
     bool m_apogee_retract_sent  = false;
     F64 m_prev_sim_time = -1.0;
 
+    void setAirbrake(F32 level);
+
 
     // ----------------------------------------------------------------------
     // Handler implementations for typed input ports
@@ -56,7 +58,6 @@ class AirbrakeController final : public AirbrakeControllerComponentBase {
     //! Handler implementation for sensorDataIn
     void sensorDataIn_handler(FwIndexType portNum,  //!< The port number
                               const RitlFsw::SensorData& data) override;
-    void sendActuation(F32 level);
 };
 
 }  // namespace RitlFsw
