@@ -43,12 +43,12 @@ void FlightMain ::run_handler(FwIndexType portNum, U32 context) {
         m_state = FlightState::FLIGHT;
         Fw::Logger::log("FlightMain: sim connected\n");
     }
+    // only reached once in FLIGHT state
 
     RitlFsw::ImuSimData imu = this->getImu_out(0);
     F64 baro = this->getBaro_out(0);
     Fw::Logger::log("baro %f\n", baro);
 
-    // only reached once in FLIGHT state
 
     // Use this for Bonus Project - AirbrakeController requires time t from SensorData
     // So we bypass SimSensors.

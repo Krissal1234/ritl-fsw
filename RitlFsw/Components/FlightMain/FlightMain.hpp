@@ -30,13 +30,8 @@ class FlightMain final : public FlightMainComponentBase {
     FlightState m_state = FlightState::INITIALISING;
 
 
-
     void fireDrogue();
     void fireMain();
-
-
-
-
 
     // ----------------------------------------------------------------------
     // Handler implementations for typed input ports
