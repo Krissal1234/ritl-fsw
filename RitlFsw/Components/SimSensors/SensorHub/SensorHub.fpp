@@ -8,6 +8,7 @@ module RitlFsw {
         @ Future proof hook in case testing requires bypassing SimSensors
         guarded input port getSensorData: GetSensorData
 
+    @ Port to indicate that Sensor Data is flowing from simulation
         guarded input port getSimReady : GetSimReady
 
        @ Output ports to individual sensor components

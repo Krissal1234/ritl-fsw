@@ -29,7 +29,7 @@ class SensorHub final : public SensorHubComponentBase {
       RitlFsw::SensorData m_sensorData {
           0.0,        // t — time, 0 on startup
           {0.0, 0.0, 0.0},  // accel
-          1e9,   // baro — starts very high
+          0.0,   // baro
           {0.0, 0.0, 0.0}   // gyro
       };
     // ----------------------------------------------------------------------
