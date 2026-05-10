@@ -10,9 +10,7 @@ module RitlFsw {
 
         guarded input port getSimReady : GetSimReady
 
-       @ Output ports to individual sensor components
-        output port imuDataOut  : ImuDataPort
-        output port baroDataOut : BaroDataPort
+        output port sensorDataOut : SensorDataPort
 
         @ Port for requesting the current time
         time get port timeCaller

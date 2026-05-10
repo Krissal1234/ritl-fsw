@@ -25,25 +25,15 @@ class FlightMain final : public FlightMainComponentBase {
     ~FlightMain();
 
   private:
-    enum class FlightState { INITIALISING, FLIGHT, LANDED };
-
-    FlightState m_state = FlightState::INITIALISING;
-
-
-
-
-
-
     // ----------------------------------------------------------------------
     // Handler implementations for typed input ports
     // ----------------------------------------------------------------------
 
-    //! Handler implementation for run
+    //! Handler implementation for sensorDataIn
     //!
-    //! Scheduler that drives the main component
-    void run_handler(FwIndexType portNum,  //!< The port number
-                     U32 context           //!< The call order
-                     ) override;
+    //! OrchReceiver drives the main component
+    void sensorDataIn_handler(FwIndexType portNum,  //!< The port number
+                              const RitlFsw::SensorData& data) override;
 };
 
 }  // namespace RitlFsw
