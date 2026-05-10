@@ -15,7 +15,7 @@ AirbrakeController::AirbrakeController(const char* const compName)
 
 AirbrakeController::~AirbrakeController() {}
 
-void AirbrakeController::setAirbrake(F32 level) {
+void AirbrakeController::setAirbrake(F64 level) {
     RitlFsw::ActuationCommand cmd;
     cmd.set_cmdId(RitlFsw::CommandId::AIRBRAKE_SET);
     cmd.set_deployment_level(level);
@@ -94,7 +94,7 @@ void AirbrakeController::sensorDataIn_handler(
     Fw::Logger::log("t=%.2f alt=%.1f pred=%.1f err=%.1f dep=%.3f vz=%.2f\n",
         t, altitude, predicted_apogee, error, raw, m_vz);
 
-    this->setAirbrake(static_cast<F32>(raw));
+    this->setAirbrake(raw);
 }
 
 }  // namespace RitlFsw
