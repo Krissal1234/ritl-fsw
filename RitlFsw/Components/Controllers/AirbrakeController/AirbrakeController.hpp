@@ -46,6 +46,7 @@ class AirbrakeController final : public AirbrakeControllerComponentBase {
 
     bool m_burnout_retract_sent = false;
     bool m_apogee_retract_sent  = false;
+    bool m_boosting = false;
     F64 m_prev_sim_time = -1.0;
 
     void setAirbrake(F64 level);

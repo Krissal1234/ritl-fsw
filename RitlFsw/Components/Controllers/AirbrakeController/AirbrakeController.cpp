@@ -48,15 +48,20 @@ void AirbrakeController::sensorDataIn_handler(
         return;
     }
 
-    // always integrate vz
+
     m_vz += az * dt;
 
     // only act after burnout
     if (!m_burned_out) {
-        if (az < BOOST_ACCEL_THRESHOLD) {
+        if (az > BOOST_ACCEL_THRESHOLD) {
+            m_boosting = true;
+            Fw::Logger::log("BOOSTING detected at t=%.2f az=%.2f\n", t, az);
+
+        }
+        if (m_boosting && az < BOOST_ACCEL_THRESHOLD) {
             m_burned_out = true;
+            Fw::Logger::log("BURNOUT detected at t=%.2f az=%.2f\n", t, az);
         } else {
-            // this->setAirbrake(0.0);
             return;
         }
     }
