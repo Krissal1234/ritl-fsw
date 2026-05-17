@@ -26,7 +26,7 @@ module RitlFsw {
 
     struct ActuationCommand {
         cmdId: CommandId
-        deployment_level: F32
+        deployment_level: F64
     }
 
 

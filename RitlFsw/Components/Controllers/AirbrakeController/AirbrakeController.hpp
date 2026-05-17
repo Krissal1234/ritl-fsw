@@ -44,11 +44,12 @@ class AirbrakeController final : public AirbrakeControllerComponentBase {
     static constexpr F64 INTEGRAL_CLAMP = 1000.0;
     static constexpr F64 CALL_RATE_HZ = 10.0;
 
+    bool m_boosting = false;
     bool m_burnout_retract_sent = false;
     bool m_apogee_retract_sent  = false;
     F64 m_prev_sim_time = -1.0;
 
-    void setAirbrake(F32 level);
+    void setAirbrake(F64 level);
 
 
     // ----------------------------------------------------------------------
