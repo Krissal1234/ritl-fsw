@@ -1,4 +1,4 @@
-# Source tag requirements:
+sudo apt install gcc-aarch64-linux-gnu g++-aarch64-linux-gnu -y# Source tag requirements:
 # -r https://raw.githubusercontent.com/nasa/fprime/refs/tags/v4.2.0/requirements.txt
 
 # Local requirements:

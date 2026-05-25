@@ -14,3 +14,7 @@ build-fprime-*
 /.vscode/
 .DS_Store
 *.gcov
+
+build-rpi4/
+build-fprime-automatic-native/
+build-artifacts/

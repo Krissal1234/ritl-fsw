@@ -5,6 +5,8 @@
 
 namespace RitlFsw {
 
+constexpr F64 AirbrakeController::INTEGRAL_CLAMP;
+
 AirbrakeController::AirbrakeController(const char* const compName)
     : AirbrakeControllerComponentBase(compName),
       m_prev_sim_time(-1.0),
