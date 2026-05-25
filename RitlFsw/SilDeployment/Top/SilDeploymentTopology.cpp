@@ -109,7 +109,8 @@ void setupTopology(const TopologyState& state) {
     // Connect orchSenderClient to the Python actuation server on port 50101.
     // The Python orchestrator is always local (Docker port-mapped to 127.0.0.1),
     // so this address is independent of the GDS hostname in state.hostname.
-    orchSenderClient.configure("127.0.0.1", static_cast<U16>(ORCH_SENDER_PORT));
+    // orchSenderClient.configure("127.0.0.1", static_cast<U16>(ORCH_SENDER_PORT));
+    orchSenderClient.configure("10.42.0.142", static_cast<U16>(ORCH_SENDER_PORT));
     Os::TaskString orchSenderTaskName("OrchSenderTask");
     orchSenderClient.start(orchSenderTaskName, ORCH_SENDER_PRIORITY, Default::STACK_SIZE);
 }
