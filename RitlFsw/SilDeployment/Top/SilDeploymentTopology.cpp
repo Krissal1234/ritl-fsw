@@ -21,7 +21,8 @@ namespace RitlFsw {
 Fw::MallocAllocator mallocator;
 
 // The reference topology divides the incoming clock signal (1Hz) into sub-signals: 1Hz, 1/2Hz, and 1/4Hz with 0 offset
-Svc::RateGroupDriver::DividerSet rateGroupDivisorsSet{{{10, 0}, {10, 0}, {100, 0}}};
+Svc::RateGroupDriver::DividerSet rateGroupDivisorsSet{{{2, 0}, {10, 0}, {100, 0}}};
+
 
 // Rate groups may supply a context token to each of the attached children whose purpose is set by the project. The
 // reference topology sets each token to zero as these contexts are unused in this project.
@@ -110,6 +111,7 @@ void setupTopology(const TopologyState& state) {
     // The Python orchestrator is always local (Docker port-mapped to 127.0.0.1),
     // so this address is independent of the GDS hostname in state.hostname.
     orchSenderClient.configure("127.0.0.1", static_cast<U16>(ORCH_SENDER_PORT));
+    // orchSenderClient.configure("10.42.0.1", static_cast<U16>(ORCH_SENDER_PORT));
     Os::TaskString orchSenderTaskName("OrchSenderTask");
     orchSenderClient.start(orchSenderTaskName, ORCH_SENDER_PRIORITY, Default::STACK_SIZE);
 }
