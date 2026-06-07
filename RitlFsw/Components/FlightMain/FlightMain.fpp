@@ -10,6 +10,7 @@ module RitlFsw {
         # output port getImu : GetImuData
 
         output port baroToRecovery : BaroDataPort
+        output port sensorDatatoRecovery : SensorDataPort
 
         output port sensorDataToControl : SensorDataPort
 

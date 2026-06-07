@@ -188,7 +188,8 @@ module RitlFsw {
       # flightMain.getImu -> imuSimSensor.getImuData
 
       sensorHub.sensorDataOut -> flightMain.sensorDataIn
-      flightMain.baroToRecovery -> recoveryController.baroDataIn
+      # flightMain.baroToRecovery -> recoveryController.baroDataIn
+      flightMain.sensorDatatoRecovery-> recoveryController.sensorDataIn
       flightMain.sensorDataToControl -> airbrakeController.sensorDataIn
 
 

@@ -3,6 +3,7 @@ module RitlFsw {
     passive component RecoveryController {
 
         sync input port baroDataIn : BaroDataPort
+        sync input port sensorDataIn : SensorDataPort
 
         output port actuationCommandOut : ActuationCommandPort
 

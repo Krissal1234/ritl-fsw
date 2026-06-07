@@ -22,7 +22,9 @@ FlightMain ::~FlightMain() {}
 
 void FlightMain ::sensorDataIn_handler(FwIndexType portNum, const RitlFsw::SensorData& data) {
     this->sensorDataToControl_out(0, data);
-    this->baroToRecovery_out(0, data.get_baro());
+    this->sensorDatatoRecovery_out(0,data);
+
+    // this->baroToRecovery_out(0, data.get_baro());
 }
 
 }  // namespace RitlFsw
