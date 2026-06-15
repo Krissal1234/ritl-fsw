@@ -50,7 +50,7 @@ void RecoveryController::sensorDataIn_handler(FwIndexType portNum, const RitlFsw
             m_baro_frozen_count++;
             if (m_baro_frozen_count >= BARO_FREEZE_COUNT && !m_baro_frozen) {
                 m_baro_frozen = true;
-                Fw::Logger::log("BARO FROZEN - switching to IMU fallback\n");
+                Fw::Logger::log("BARO_FROZEN %.4f\n", t);
             }
         } else {
             m_baro_frozen_count = 0;
@@ -73,7 +73,8 @@ void RecoveryController::sensorDataIn_handler(FwIndexType portNum, const RitlFsw
             // Fallback: time-based if baro is frozen
             else if (m_baro_frozen && (t - m_drogue_time) >= MAIN_DEPLOY_TIMEOUT) {
                 this->fireMain();
-                Fw::Logger::log("MAIN FIRED (timeout fallback) --------------\n");
+                Fw::Logger::log("MAIN_FIRED_TIMEOUT %.4f\n", t);
+
                 m_main_fired = true;
             }
         }
@@ -102,7 +103,8 @@ void RecoveryController::sensorDataIn_handler(FwIndexType portNum, const RitlFsw
         if (m_launched && std::abs(accel_z) < ACCEL_FREEFALL_THRESH) {
             this->fireDrogue();
             m_drogue_time = t;
-            Fw::Logger::log("DROGUE FIRED (IMU fallback) --------------\n");
+            Fw::Logger::log("DROGUE_FIRED_IMU %.4f\n", t);
+
             m_drogue_fired = true;
         }
     }
