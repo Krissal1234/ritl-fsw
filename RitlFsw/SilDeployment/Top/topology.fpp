@@ -39,8 +39,6 @@ module RitlFsw {
     instance orchSender
     instance orchSenderBufferManager
     instance orchSenderClient
-    instance baroSimSensor
-    instance imuSimSensor
     instance sensorHub
     instance recoveryController
     instance airbrakeController
