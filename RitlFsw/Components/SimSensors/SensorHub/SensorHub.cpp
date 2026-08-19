@@ -1,4 +1,3 @@
-// ======================================================================
 // \title  SensorHub.cpp
 // \author krissal1234
 // \brief  cpp file for SensorHub component implementation class
