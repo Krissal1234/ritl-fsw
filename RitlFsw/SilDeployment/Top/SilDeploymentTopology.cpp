@@ -22,10 +22,10 @@ Fw::MallocAllocator mallocator;
 
 // {divisor, offset}
 Svc::RateGroupDriver::DividerSet rateGroupDivisorsSet{{
-    {1, 0},   // Rate Group 0: 10 / 1   = 10 Hz
-    {10, 0},  // Rate Group 1: 10 / 10  = 1 Hz
-    {100, 0}  // Rate Group 2: 10 / 100 = 0.1 Hz
-}};};
+    {4, 0},   // Rate Group 0: 100 Hz / 4   = 25 Hz
+    {10, 0},  // Rate Group 1: 100 Hz / 10  = 10 Hz
+    {100, 0}  // Rate Group 2: 100 Hz / 100 = 1 Hz
+}};
 
 
 // Rate groups may supply a context token to each of the attached children whose purpose is set by the project. The
