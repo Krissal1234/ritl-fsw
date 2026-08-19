@@ -83,14 +83,10 @@ module RitlFsw {
 
   instance orchSenderClient: Drv.TcpClient base id 0x10026000
 
-  instance imuSimSensor: RitlFsw.ImuSimSensor base id 0x10027000
+  instance sensorHub: RitlFsw.SensorHub base id 0x10027000
 
-  instance baroSimSensor: RitlFsw.BaroSimSensor base id 0x10028000
+  instance recoveryController: RitlFsw.RecoveryController base id 0x10028000
 
-  instance sensorHub: RitlFsw.SensorHub base id 0x10029000
-
-  instance recoveryController: RitlFsw.RecoveryController base id 0x10030000
-
-  instance airbrakeController: RitlFsw.AirbrakeController base id 0x10031000
+  instance airbrakeController: RitlFsw.AirbrakeController base id 0x10029000
 
 }
