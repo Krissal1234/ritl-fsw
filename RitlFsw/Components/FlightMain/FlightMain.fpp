@@ -7,17 +7,10 @@ module RitlFsw {
         @ OrchReceiver drives the main component
         async input port sensorDataIn : SensorDataPort
         # @ Ports for Polling Sensors - Synchronous Get Pattern
-        # output port getImu : GetImuData
 
         output port baroToRecovery : BaroDataPort
 
         output port sensorDataToControl : SensorDataPort
-
-        # output port getSimReady : GetSimReady
-
-        # output port getSensorData : GetSensorData
-
-
 
 
         ###############################################################################
