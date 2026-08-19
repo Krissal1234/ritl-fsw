@@ -23,7 +23,7 @@ FlightMain ::~FlightMain() {}
 
 void FlightMain ::run_handler(FwIndexType portNum, U32 context) {
     // RitlFsw::ImuSimData imu = this->getImu_out(0);
-    // F64 baro = this->getBaro_out(0);
+
     if (m_state == FlightState::INITIALISING) {
         bool ready = this->getSimReady_out(0);
         if (!ready) return;
@@ -31,17 +31,9 @@ void FlightMain ::run_handler(FwIndexType portNum, U32 context) {
         Fw::Logger::log("FlightMain: sim connected\n");
     }
 
-    // only reached once in FLIGHT state
     RitlFsw::SensorData sd = this->getSensorData_out(0);
-    // Fw::Logger::log("Received sensor data in main: t=%.4f\n", sd.get_t());
     this->sensorDataToControl_out(0, sd);
     this->baroToRecovery_out(0, sd.get_baro());
-    // RitlFsw::SensorData sd;
-
-    // sd.set_accel(imu.get_accel());
-    // sd.set_gyro(imu.get_gyro());
-    // sd.set_baro(baro);
-    // sd.set_t(0.0); // we should look into this when we start measuring latencies
 
 
 
