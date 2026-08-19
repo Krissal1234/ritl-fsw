@@ -119,7 +119,6 @@ module RitlFsw {
       rateGroup1.RateGroupMemberOut[2] -> systemResources.run
       rateGroup1.RateGroupMemberOut[3] -> ComCcsds.comQueue.run
       rateGroup1.RateGroupMemberOut[4] -> ComCcsds.aggregator.timeout
-      # rateGroup1.RateGroupMemberOut[5] -> flightMain.run
 
       # Rate group 2
 
@@ -181,11 +180,6 @@ module RitlFsw {
     }
 
     connections SilDeployment {
-      # sensorHub.baroDataOut -> baroSimSensor.baroSensorDataIn
-      # sensorHub.imuDataOut -> imuSimSensor.imuSensorDataIn
-
-      # flightMain.getBaro -> baroSimSensor.getBaroData
-      # flightMain.getImu -> imuSimSensor.getImuData
 
       sensorHub.sensorDataOut -> flightMain.sensorDataIn
       flightMain.baroToRecovery -> recoveryController.baroDataIn
