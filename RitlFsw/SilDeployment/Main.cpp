@@ -87,7 +87,7 @@ int main(int argc, char* argv[]) {
 
     // Setup, cycle, and teardown topology
     RitlFsw::setupTopology(inputs);
-    RitlFsw::startRateGroups(Fw::TimeInterval(0,10000));  // Program loop cycling at 100 Hz for SiL
+    RitlFsw::startRateGroups(Fw::TimeInterval(0, 100000));  // 100,000 µs = 100 ms → 10 Hz base tick
     RitlFsw::teardownTopology(inputs);
     (void)printf("Exiting...\n");
     return 0;
