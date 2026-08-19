@@ -25,14 +25,8 @@ class RecoveryController final : public RecoveryControllerComponentBase {
     ~RecoveryController();
 
   private:
-    F64  m_min_baro;
-    I32  m_baro_count;
     bool m_drogue_fired;
     bool m_main_fired;
-
-    static constexpr F64 APOGEE_BARO_DELTA = 0.5;
-    static constexpr U32 APOGEE_CONFIRM_COUNT = 5;
-    static constexpr F64 MAIN_DEPLOY_DELTA_HPA = 40.0;
 
 
     void fireDrogue();
